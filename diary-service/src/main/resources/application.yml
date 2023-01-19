@@ -1,0 +1,25 @@
+server:
+  port: 8080
+spring:
+  profiles:
+    active: test
+  #jackson配置
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss.SSS
+    time-zone: GMT+8
+    default-property-inclusion: non_null
+    deserialization:
+      fail-on-unknown-properties: false #未定的key不序列化 0bjectMapper自动化配置
+
+# JWT配置
+jwt:
+  # 秘钥配置
+  secret: JWTSecret
+  # HeaderKey
+  tokenHeader: Authorization
+  # Token前缀字符
+  tokenPrefix: cqwu-
+  # 过期时间 单位秒
+  expiration: 86400
+  # 配置不需要认证的接口
+  antMatchers: /index/**,/login/**,/favicon.ico,/doc.html,/webjars/**,/swagger-resources/**,/v2/**
