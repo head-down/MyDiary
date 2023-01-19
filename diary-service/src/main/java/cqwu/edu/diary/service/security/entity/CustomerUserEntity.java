@@ -13,7 +13,7 @@ public class CustomerUserEntity implements Serializable, UserDetails {
     /**
      * 用户ID
      */
-    private Long id;
+    private Integer id;
     /**
      * 用户名
      */
