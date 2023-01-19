@@ -71,7 +71,6 @@ public class JwtAuthenticationTokenFilter extends BasicAuthenticationFilter {
             } catch (ExpiredJwtException ex) {
                 log.info("token过期!");
             } catch (Exception ex) {
-                //TODO 异常封装
                 log.info("token无效");
             }
         }
