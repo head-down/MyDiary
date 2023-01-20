@@ -1,6 +1,6 @@
 package cqwu.edu.diary.service.security.jwt;
 
-import com.alibaba.fastjson.JSON;
+import cqwu.edu.diary.common.utils.JsonUtil;
 import cqwu.edu.diary.service.config.JwtConfig;
 import cqwu.edu.diary.service.security.entity.CustomerUserEntity;
 import io.jsonwebtoken.Claims;
@@ -8,6 +8,7 @@ import io.jsonwebtoken.ExpiredJwtException;
 import io.jsonwebtoken.Jwts;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.math.NumberUtils;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.GrantedAuthority;
@@ -56,14 +57,14 @@ public class JwtAuthenticationTokenFilter extends BasicAuthenticationFilter {
                     String authority = claims.get("authorities").toString();
                     if (StringUtils.isNotEmpty(authority)) {
                         //此处需要优化代码
-                        List<Map<String, String>> authorityList = JSON.parseObject(authority, List.class);
+                        List<Map<String, String>> authorityList = JsonUtil.json2Object(authority, List.class);
                         for (Map<String, String> roleMap : authorityList) {
                             authorities.add(new SimpleGrantedAuthority(roleMap.get("authority")));
                         }
                     }
                     CustomerUserEntity customerUserEntity = new CustomerUserEntity();
                     customerUserEntity.setUsername(username);
-                    customerUserEntity.setId(Long.parseLong(userId));
+                    customerUserEntity.setId(NumberUtils.createInteger(userId));
                     customerUserEntity.setAuthorities(authorities);
                     UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(customerUserEntity, userId, authorities);
                     SecurityContextHolder.getContext().setAuthentication(authenticationToken);
