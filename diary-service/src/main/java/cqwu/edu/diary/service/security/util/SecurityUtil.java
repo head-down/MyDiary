@@ -27,7 +27,7 @@ public class SecurityUtil {
      *
      * @return {@link Long}
      */
-    public static Integer getId() {
+    public static Long getId() {
         return getUserInfo().getId();
     }
 

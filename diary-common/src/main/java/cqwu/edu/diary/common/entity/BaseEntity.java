@@ -11,7 +11,7 @@ import java.time.LocalDateTime;
 public class BaseEntity {
 
     @ApiModelProperty(value = "主键")
-    @TableId(value = "id",type = IdType.AUTO)
+    @TableId(value = "id",type = IdType.ASSIGN_UUID)
     private Long id;
 
     @ApiModelProperty(value = "删除标志:1-有效,0-无效")

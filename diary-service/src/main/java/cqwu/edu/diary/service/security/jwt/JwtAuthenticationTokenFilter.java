@@ -64,15 +64,15 @@ public class JwtAuthenticationTokenFilter extends BasicAuthenticationFilter {
                     }
                     CustomerUserEntity customerUserEntity = new CustomerUserEntity();
                     customerUserEntity.setUsername(username);
-                    customerUserEntity.setId(NumberUtils.createInteger(userId));
+                    customerUserEntity.setId(NumberUtils.createLong(userId));
                     customerUserEntity.setAuthorities(authorities);
                     UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(customerUserEntity, userId, authorities);
                     SecurityContextHolder.getContext().setAuthentication(authenticationToken);
                 }
             } catch (ExpiredJwtException ex) {
-                log.info("token过期!");
+                log.error("token过期!",ex);
             } catch (Exception ex) {
-                log.info("token无效");
+                log.error("token无效",ex);
             }
         }
         chain.doFilter(request, response);

@@ -20,14 +20,14 @@ public class CustomMetaObjectHandler implements MetaObjectHandler {
 
     @Override
     public void insertFill(MetaObject metaObject) {
-        this.strictInsertFill(metaObject,"createUserId",Integer.class,SecurityUtil.getId());
+        this.strictInsertFill(metaObject,"createUserId",Long.class,SecurityUtil.getId());
         this.strictInsertFill(metaObject, "createTime", LocalDateTime.class, LocalDateTime.now());
     }
 
     @Override
     public void updateFill(MetaObject metaObject) {
         this.strictUpdateFill(metaObject, "modifyTime", LocalDateTime.class, LocalDateTime.now());
-        this.strictUpdateFill(metaObject, "modifyUserId", Integer.class, SecurityUtil.getId());
+        this.strictUpdateFill(metaObject, "modifyUserId", Long.class, SecurityUtil.getId());
 
     }
 }
