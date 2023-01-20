@@ -7,7 +7,6 @@ import cqwu.edu.diary.common.utils.SnowflakeDistributeId;
 import cqwu.edu.diary.common.vo.SysUserVO;
 import cqwu.edu.diary.service.config.SecurityConfig;
 import cqwu.edu.diary.service.mapper.SysUserMapper;
-import cqwu.edu.diary.service.security.encode.PasswordEncoder;
 import cqwu.edu.diary.service.security.util.SecurityUtil;
 import cqwu.edu.diary.service.service.ISysUserService;
 import org.springframework.beans.BeanUtils;
