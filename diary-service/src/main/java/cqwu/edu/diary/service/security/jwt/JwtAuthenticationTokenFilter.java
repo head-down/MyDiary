@@ -1,5 +1,6 @@
 package cqwu.edu.diary.service.security.jwt;
 
+import cqwu.edu.diary.common.exception.BusinessException;
 import cqwu.edu.diary.common.utils.JsonUtil;
 import cqwu.edu.diary.service.config.JwtConfig;
 import cqwu.edu.diary.service.security.entity.CustomerUserEntity;
@@ -71,8 +72,6 @@ public class JwtAuthenticationTokenFilter extends BasicAuthenticationFilter {
                 }
             } catch (ExpiredJwtException ex) {
                 log.error("token过期!",ex);
-            } catch (Exception ex) {
-                log.error("token无效",ex);
             }
         }
         chain.doFilter(request, response);

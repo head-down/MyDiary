@@ -9,6 +9,8 @@ import cqwu.edu.diary.service.config.SecurityConfig;
 import cqwu.edu.diary.service.mapper.SysUserMapper;
 import cqwu.edu.diary.service.security.util.SecurityUtil;
 import cqwu.edu.diary.service.service.ISysUserService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeanUtils;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -18,6 +20,8 @@ import javax.annotation.Resource;
 
 @Service("sysUserService")
 public class SysUserServiceImpl extends ServiceImpl<SysUserMapper,SysUserEntity> implements ISysUserService{
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(SysUserServiceImpl.class);
 
     @Resource
     private SysUserMapper sysUserMapper;
@@ -40,6 +44,7 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper,SysUserEntity>
     @Override
     public SysUserVO queryLoginUser() {
         final Long id = SecurityUtil.getId();
+        LOGGER.info("id:{}",id);
         final SysUserEntity userEntity = lambdaQuery().eq(SysUserEntity::getId, id).one();
         final SysUserVO userVO = new SysUserVO();
         BeanUtils.copyProperties(userEntity,userVO);
@@ -53,6 +58,7 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper,SysUserEntity>
     @Override
     public void Register(RegisterDTO dto) {
         final SysUserEntity userEntity = new SysUserEntity();
+        BeanUtils.copyProperties(dto,userEntity);
         userEntity.setId(SnowflakeDistributeId.getInstance().nextId());
         final String password = new BCryptPasswordEncoder().encode(dto.getPassword());
         userEntity.setPassword(password);

@@ -12,7 +12,7 @@ public class RegisterDTO {
 
     @ApiModelProperty(value = "用户名",required = true)
     @NotBlank
-    private String userName;
+    private String username;
 
     @ApiModelProperty(value = "密码",required = true)
     @NotBlank
