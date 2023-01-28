@@ -6,14 +6,21 @@ import cqwu.edu.diary.common.vo.SysUserVO;
 import cqwu.edu.diary.service.service.ISysUserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Required;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.annotation.Resource;
 import javax.validation.Valid;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
 @RestController
 @RequestMapping("/sysUser")
+@Validated
 public class SysUserController {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(SysUserController.class);
@@ -40,7 +47,8 @@ public class SysUserController {
      * @return 自定义返回对象
      */
     @PostMapping("/uploadProfile")
-    public CustomReturn<Void> uploadProfile(MultipartFile file){
+    public CustomReturn<Void> uploadProfile(@RequestBody @NotNull(message = "文件为空") final MultipartFile file){
+        LOGGER.info("file:{}",file);
         sysUserService.uploadProfile(file);
         return CustomReturn.success("上传成功");
     }
