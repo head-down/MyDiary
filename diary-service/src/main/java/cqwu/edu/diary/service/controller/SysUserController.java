@@ -7,6 +7,7 @@ import cqwu.edu.diary.service.service.ISysUserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.annotation.Resource;
 import javax.validation.Valid;
@@ -31,6 +32,17 @@ public class SysUserController {
     public CustomReturn<Void> register(@RequestBody @Valid RegisterDTO dto){
         sysUserService.Register(dto);
         return CustomReturn.success("注册成功");
+    }
+
+    /**
+     * 上传头像
+     * @param file 头像文件
+     * @return 自定义返回对象
+     */
+    @PostMapping("/uploadProfile")
+    public CustomReturn<Void> uploadProfile(MultipartFile file){
+        sysUserService.uploadProfile(file);
+        return CustomReturn.success("上传成功");
     }
 
 }

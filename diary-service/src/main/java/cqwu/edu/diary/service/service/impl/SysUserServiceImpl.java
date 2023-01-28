@@ -3,6 +3,7 @@ package cqwu.edu.diary.service.service.impl;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import cqwu.edu.diary.common.dto.RegisterDTO;
 import cqwu.edu.diary.common.entity.SysUserEntity;
+import cqwu.edu.diary.common.utils.FileUtil;
 import cqwu.edu.diary.common.utils.SnowflakeDistributeId;
 import cqwu.edu.diary.common.vo.SysUserVO;
 import cqwu.edu.diary.service.config.SecurityConfig;
@@ -14,6 +15,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeanUtils;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.annotation.Resource;
 
@@ -63,5 +65,10 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper,SysUserEntity>
         final String password = new BCryptPasswordEncoder().encode(dto.getPassword());
         userEntity.setPassword(password);
         sysUserMapper.insert(userEntity);
+    }
+
+    @Override
+    public void uploadProfile(MultipartFile file) {
+        return;
     }
 }
