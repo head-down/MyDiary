@@ -10,10 +10,15 @@ spring:
       minimum-idle: 10
       max-lifetime: 540000
       connection-test-query: SELECT 1 FROM DUAL
+  servlet:
+    multipart:
+      enabled: true
+      max-file-size: 20MB
+      max-request-size: 50MB
 
 #文件路径
 file:
-  path: F://files
+  path: D://program//MyDiary//files
 
 # mybatis-plus配置
 mybatis-plus:

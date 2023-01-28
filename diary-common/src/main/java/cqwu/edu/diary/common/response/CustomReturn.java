@@ -2,6 +2,7 @@ package cqwu.edu.diary.common.response;
 
 
 import cqwu.edu.diary.common.constants.ServiceResponseCode;
+import cqwu.edu.diary.common.enumerate.CustomMessageEnum;
 import lombok.Data;
 
 import java.util.List;
@@ -71,6 +72,13 @@ public class CustomReturn<T> {
         CustomReturn<T> customReturn = new CustomReturn<T>();
         customReturn.setMessage(errorMessage);
         customReturn.setCode(code);
+        return customReturn;
+    }
+
+    public static <T> CustomReturn<T> error(CustomMessageEnum messageEnum) {
+        CustomReturn<T> customReturn = new CustomReturn<T>();
+        customReturn.setMessage(messageEnum.getMsg());
+        customReturn.setCode(messageEnum.getCode());
         return customReturn;
     }
 
