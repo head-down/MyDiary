@@ -1,6 +1,5 @@
 package cqwu.edu.diary.common.vo;
 
-import com.baomidou.mybatisplus.annotation.TableField;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
@@ -15,4 +14,7 @@ public class SysUserVO {
 
     @ApiModelProperty("邮箱")
     private String email;
+
+    @ApiModelProperty("头像地址")
+    private String profile;
 }

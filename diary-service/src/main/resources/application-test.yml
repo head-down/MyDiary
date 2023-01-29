@@ -19,6 +19,7 @@ spring:
 #文件路径
 file:
   path: D://program//MyDiary//files
+  profile: images/head_profile.jpg
 
 # mybatis-plus配置
 mybatis-plus:
@@ -46,6 +47,8 @@ mybatis-plus:
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
   # 扫描枚举类
   type-enums-package: cqwu.edu.diary.common.*
+
+
 #logging:
 #  config: classpath:/logback.xml
 
