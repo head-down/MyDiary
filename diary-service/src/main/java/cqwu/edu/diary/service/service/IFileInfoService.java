@@ -6,7 +6,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 /**
  * <p>
- *  服务类
+ *  文件服务类
  * </p>
  *
  * @author jianghr

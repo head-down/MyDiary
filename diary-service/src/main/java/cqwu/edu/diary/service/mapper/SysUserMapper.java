@@ -5,6 +5,9 @@ import cqwu.edu.diary.common.entity.SysUserEntity;
 import cqwu.edu.diary.common.vo.SysUserVO;
 import org.apache.ibatis.annotations.Mapper;
 
+/**
+ * 用户mapper
+ */
 @Mapper
 public interface SysUserMapper extends BaseMapper<SysUserEntity> {
 

@@ -10,6 +10,9 @@ import org.springframework.web.multipart.MultipartFile;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 
+/**
+ * 用户服务类
+ */
 public interface ISysUserService extends IService<SysUserEntity> {
 
     /**

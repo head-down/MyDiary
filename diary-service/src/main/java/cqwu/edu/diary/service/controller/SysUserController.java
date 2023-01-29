@@ -18,6 +18,9 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
+/**
+ * 用户控制器
+ */
 @RestController
 @RequestMapping("/sysUser")
 @Validated
