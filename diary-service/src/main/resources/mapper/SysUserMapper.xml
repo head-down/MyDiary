@@ -14,5 +14,14 @@
         <result column="MOBILE" property="mobile"/>
         <result column="EMAIL" property="email"/>
     </resultMap>
+    <select id="selectLoginUser" resultType="cqwu.edu.diary.common.vo.SysUserVO">
+        select usr.email,
+               usr.name,
+               usr.mobile,
+               file.path profile
+        from sys_user usr
+        left join diary_file_info file on usr.id = file.reference_id and file.business_type = 1
+        where usr.id = #{id,jdbcType=BIGINT}
+    </select>
 
 </mapper>
