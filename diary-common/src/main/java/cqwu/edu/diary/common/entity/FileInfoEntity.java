@@ -19,12 +19,12 @@ import lombok.Setter;
  * @since 2023-01-28
  */
 @Data
-@TableName("diary_file_info")
+@TableName("cqwu_file_info")
 @ApiModel(value = "FileInfo对象", description = "")
 @EqualsAndHashCode(callSuper = true)
 public class FileInfoEntity extends BaseEntity implements Serializable{
 
-    private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = -8449557208100859218L;
 
     private Long id;
 
@@ -42,19 +42,4 @@ public class FileInfoEntity extends BaseEntity implements Serializable{
 
     @ApiModelProperty("业务类型:1、头像")
     private Integer businessType;
-
-    @ApiModelProperty("删除标识")
-    private Integer delFlag;
-
-    @ApiModelProperty("创建人id")
-    private Long createUserId;
-
-    @ApiModelProperty("创建时间")
-    private LocalDateTime createTime;
-
-    @ApiModelProperty("修改人id")
-    private Long modifyUserId;
-
-    @ApiModelProperty("修改时间")
-    private LocalDateTime modifyTime;
 }

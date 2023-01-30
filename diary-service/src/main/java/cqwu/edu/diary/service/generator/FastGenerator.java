@@ -23,8 +23,8 @@ public class FastGenerator {
                             .pathInfo(Collections.singletonMap(OutputFile.xml, "D:\\program\\MyDiary\\diary-service\\src\\main\\resources\\mapper")); // 设置mapperXml生成路径
                 })
                 .strategyConfig(builder -> builder
-                        .addInclude("diary_file_info") // 设置需要生成的表名
-                        .addTablePrefix("sys_", "diary_")
+                        .addInclude("cqwu_user_diary") // 设置需要生成的表名
+                        .addTablePrefix("sys_", "cqwu_")
                         .serviceBuilder().enableFileOverride()
                         .entityBuilder().enableFileOverride().enableLombok()
                         .mapperBuilder().enableFileOverride()

@@ -4,6 +4,8 @@ import cqwu.edu.diary.common.dto.RegisterDTO;
 import cqwu.edu.diary.common.response.CustomReturn;
 import cqwu.edu.diary.common.vo.SysUserVO;
 import cqwu.edu.diary.service.service.ISysUserService;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Required;
@@ -24,6 +26,7 @@ import javax.validation.constraints.NotNull;
 @RestController
 @RequestMapping("/sysUser")
 @Validated
+@Api(value = "/sysUser",tags = "用户接口")
 public class SysUserController {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(SysUserController.class);
@@ -32,6 +35,7 @@ public class SysUserController {
     private ISysUserService sysUserService;
 
     @GetMapping("/getUser")
+    @ApiOperation("查询当前登录人员信息")
     public CustomReturn<SysUserVO> queryLoginUser(){
         SysUserVO userVO = sysUserService.queryLoginUser();
         LOGGER.info("userVO:{}",userVO);
@@ -39,6 +43,7 @@ public class SysUserController {
     }
 
     @PostMapping("/register")
+    @ApiOperation("用户注册")
     public CustomReturn<Void> register(@RequestBody @Valid RegisterDTO dto){
         sysUserService.Register(dto);
         return CustomReturn.success("注册成功");
@@ -50,6 +55,7 @@ public class SysUserController {
      * @return 自定义返回对象
      */
     @PostMapping("/uploadProfile")
+    @ApiOperation("上传头像")
     public CustomReturn<Void> uploadProfile(@RequestBody @NotNull(message = "文件为空") final MultipartFile file){
         LOGGER.info("file:{}",file);
         sysUserService.uploadProfile(file);

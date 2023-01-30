@@ -1,9 +1,11 @@
 package cqwu.edu.diary.common.vo;
 
+import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
 @Data
+@ApiModel("用户返回对象")
 public class SysUserVO {
 
     @ApiModelProperty("昵称")

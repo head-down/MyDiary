@@ -5,11 +5,15 @@ import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
+import java.io.Serializable;
+
 @EqualsAndHashCode(callSuper = true)
 @Data
 @TableName("sys_user")
-public class SysUserEntity extends BaseEntity{
+public class SysUserEntity extends BaseEntity implements Serializable {
 
+    private static final long serialVersionUID = -733832598153051444L;
+    
     @TableField(value = "USERNAME")
     private String username;
 

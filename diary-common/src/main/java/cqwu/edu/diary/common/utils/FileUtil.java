@@ -4,6 +4,7 @@ import cqwu.edu.diary.common.enumerate.CustomMessageEnum;
 import cqwu.edu.diary.common.exception.BusinessException;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.io.FileUtils;
+import org.apache.commons.io.IOUtils;
 import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
 
