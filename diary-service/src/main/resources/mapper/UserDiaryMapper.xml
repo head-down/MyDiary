@@ -3,11 +3,34 @@
 <mapper namespace="cqwu.edu.diary.service.mapper.UserDiaryMapper">
 
     <select id="selectUserDiaries" resultType="cqwu.edu.diary.common.vo.UserDiaryVO">
-        select
-               diary.id diaryId,
-               DATE_FORMAT(diary.create_time,'%Y-%m-%d') date
-        from cqwu_user_diary diary
-        left join cqwu_user_relation relate
-        where diary.create_user_id = #{userId,jdbcType=BIGINT}
+        with userDiary as (select diary1.id                                   diaryId,
+                                  diary1.create_user_id                       userId,
+                                  DATE_FORMAT(diary1.create_time, '%Y-%m-%d') date
+                           from cqwu_user_relation relate
+                                    left join cqwu_user_diary diary1 on relate.user_id = diary1.create_user_id
+                           where relate.user_id = #{userId,jdbcType=BIGINT}),
+             matchDiary as (
+                 select diary2.id                                   diaryId,
+                        diary2.create_user_id                       matchUserId,
+                        DATE_FORMAT(diary2.create_time, '%Y-%m-%d') date
+                 from cqwu_user_relation relate
+                          left join cqwu_user_diary diary2 on relate.match_user_id = diary2.create_user_id
+                 where relate.user_id = #{userId,jdbcType=BIGINT}
+             )
+        select userDiary.diaryId,
+               userDiary.userId,
+               matchDiary.diaryId matchDiaryId,
+               matchDiary.matchUserId,
+               userDiary.date
+        from userDiary
+                 left join matchDiary on userDiary.date = matchDiary.date
+        union
+        select userDiary.diaryId,
+               userDiary.userId,
+               matchDiary.diaryId matchDiaryId,
+               matchDiary.matchUserId,
+               matchDiary.date
+        from userDiary
+                 right join matchDiary on userDiary.date = matchDiary.date
     </select>
 </mapper>

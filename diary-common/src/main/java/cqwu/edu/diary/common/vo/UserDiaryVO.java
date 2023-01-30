@@ -13,6 +13,9 @@ public class UserDiaryVO {
     @ApiModelProperty("日志id")
     private Long diaryId;
 
+    @ApiModelProperty("匹配对象日志id")
+    private Long matchDiaryId;
+
     @ApiModelProperty("创建日期")
     private LocalDate date;
 
