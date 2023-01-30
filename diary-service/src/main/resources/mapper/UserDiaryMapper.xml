@@ -6,9 +6,11 @@
         with userDiary as (select diary1.id                                   diaryId,
                                   diary1.create_user_id                       userId,
                                   DATE_FORMAT(diary1.create_time, '%Y-%m-%d') date
-                           from cqwu_user_relation relate
-                                    left join cqwu_user_diary diary1 on relate.user_id = diary1.create_user_id
-                           where relate.user_id = #{userId,jdbcType=BIGINT}),
+                           from cqwu_user_diary diary1
+                                    left join cqwu_user_relation relate on relate.user_id = diary1.create_user_id
+                           where diary1.create_user_id = #{userId,jdbcType=BIGINT}
+                             and diary1.del_flag = 0
+                             and relate.del_flag = 0),
              matchDiary as (
                  select diary2.id                                   diaryId,
                         diary2.create_user_id                       matchUserId,
@@ -16,6 +18,8 @@
                  from cqwu_user_relation relate
                           left join cqwu_user_diary diary2 on relate.match_user_id = diary2.create_user_id
                  where relate.user_id = #{userId,jdbcType=BIGINT}
+                   and diary2.del_flag = 0
+                   and relate.del_flag = 0
              )
         select userDiary.diaryId,
                userDiary.userId,
